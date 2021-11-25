@@ -2,26 +2,26 @@ import { Router } from "express";
 const router = Router();
 
 import {
-  getProducts,
-  addProduct,
-  deleteProduct,
-  editProduct,
-  getProduct,
-} from "../controllers/products.controller";
+  getPaymentMethods,
+  addPaymentMethod,
+  getPaymentMethod,
+  editPaymentMethod,
+  deletePaymentMethod,
+} from "../controllers/paymentMethods.controller";
 
-router.get("/", getProducts);
-router.get("/:id", getProduct);
-router.post("/", addProduct);
-router.put("/:id", editProduct);
-router.delete("/:id", deleteProduct);
+router.get("/", getPaymentMethods);
+router.post("/", addPaymentMethod);
+router.get("/:id", getPaymentMethod);
+router.put("/:id", editPaymentMethod);
+router.delete("/:id", deletePaymentMethod);
 module.exports = router;
 
 /**
  * @swagger
- * /products:
+ * /paymentMethods:
  *  get:
  *    tags:
- *      - Products Admin
+ *      - Payment Methods Admin
  *    summary: list of products in the store for all users
  *    description: list of products in the store for all users
  *    responses:
@@ -31,10 +31,10 @@ module.exports = router;
 
 /**
  * @swagger
- * /products/{id}:
+ * /paymentMethods/{id}:
  *  get:
  *    tags:
- *      - Products Admin
+ *      - Payment Methods Admin
  *    summary: list of products in the store for all users
  *    description: list of products in the store for all users
  *    parameters:
@@ -50,23 +50,18 @@ module.exports = router;
 
 /**
  * @swagger
- * /products:
+ * /paymentMethods:
  *  post:
  *    tags:
- *      - Products Admin
+ *      - Payment Methods Admin
  *    summary: add a new product to the store if the user is an admin
  *    description: add a new product to the store if the user is an admin
  *    parameters:
- *    - name: name_product
+ *    - name: name
  *      description: id of the admin user
  *      in: formData
  *      required: true
  *      type: string
- *    - name : price_product
- *      description: name of the product
- *      in: formData
- *      required: true
- *      type: integer
  *    responses:
  *      200:
  *        description: Success
@@ -74,10 +69,10 @@ module.exports = router;
 
 /**
  * @swagger
- * /products/{id}:
+ * /paymentMethods/{id}:
  *  put:
  *    tags:
- *      - Products Admin
+ *      - Payment Methods Admin
  *    summary: edit a product if the user is an admin and the product exists
  *    description: edit a product if the user is an admin and the product exists
  *    parameters:
@@ -86,16 +81,11 @@ module.exports = router;
  *      in: path
  *      required: true
  *      type: integer
- *    - name: name_product
+ *    - name: name
  *      description: id of the product
  *      in: formData
  *      required: true
  *      type: string
- *    - name: price_product
- *      description: name of the product to edit
- *      in: formData
- *      required: true
- *      type: integer
  *    responses:
  *      200:
  *        description: Success
@@ -103,10 +93,10 @@ module.exports = router;
 
 /**
  * @swagger
- * /products/{id}:
+ * /paymentMethods/{id}:
  *  delete:
  *    tags:
- *      - Products Admin
+ *      - Payment Methods Admin
  *    summary: delete a product if the user is an admin and the product exists
  *    description: delete a product if the user is an admin and the product exists
  *    parameters:

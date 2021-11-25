@@ -1,21 +1,14 @@
-import { Router } from "express";
-const router = Router();
-
-import {
-  getProducts,
-  addProduct,
-  deleteProduct,
-  editProduct,
-  getProduct,
-} from "../controllers/products.controller";
-
-router.get("/", getProducts);
-router.get("/:id", getProduct);
-router.post("/", addProduct);
-router.put("/:id", editProduct);
-router.delete("/:id", deleteProduct);
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const router = (0, express_1.Router)();
+const paymentMethods_controller_1 = require("../controllers/paymentMethods.controller");
+router.get("/", paymentMethods_controller_1.getPaymentMethods);
+router.post("/", paymentMethods_controller_1.addPaymentMethod);
+router.get("/:id", paymentMethods_controller_1.getPaymentMethod);
+router.put("/:id", paymentMethods_controller_1.editPaymentMethod);
+router.delete("/:id", paymentMethods_controller_1.deletePaymentMethod);
 module.exports = router;
-
 /**
  * @swagger
  * /products:
@@ -28,7 +21,6 @@ module.exports = router;
  *      200:
  *        description: Success
  */
-
 /**
  * @swagger
  * /products/{id}:
@@ -47,7 +39,6 @@ module.exports = router;
  *      200:
  *        description: Success
  */
-
 /**
  * @swagger
  * /products:
@@ -71,7 +62,6 @@ module.exports = router;
  *      200:
  *        description: Success
  */
-
 /**
  * @swagger
  * /products/{id}:
@@ -100,7 +90,6 @@ module.exports = router;
  *      200:
  *        description: Success
  */
-
 /**
  * @swagger
  * /products/{id}:
@@ -119,3 +108,4 @@ module.exports = router;
  *      200:
  *        description: Success
  */
+//# sourceMappingURL=paymentMehods.routes.js.map

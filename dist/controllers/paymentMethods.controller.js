@@ -12,12 +12,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteProduct = exports.editProduct = exports.addProduct = exports.getProduct = exports.getProducts = void 0;
-const products_model_1 = __importDefault(require("../models/products.model"));
-function getProducts(req, res) {
+exports.deletePaymentMethod = exports.editPaymentMethod = exports.addPaymentMethod = exports.getPaymentMethod = exports.getPaymentMethods = void 0;
+const paymentMethods_model_1 = __importDefault(require("../models/paymentMethods.model"));
+function getPaymentMethods(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const products = yield products_model_1.default.findAll();
+            const products = yield paymentMethods_model_1.default.findAll();
             res.json(products);
         }
         catch (error) {
@@ -25,14 +25,14 @@ function getProducts(req, res) {
         }
     });
 }
-exports.getProducts = getProducts;
-function getProduct(req, res) {
+exports.getPaymentMethods = getPaymentMethods;
+function getPaymentMethod(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const { id } = req.params;
         try {
-            const product = yield products_model_1.default.findOne({
+            const product = yield paymentMethods_model_1.default.findOne({
                 where: {
-                    id_product: id,
+                    id_payment_method: id,
                 },
             });
             res.json(product);
@@ -42,14 +42,13 @@ function getProduct(req, res) {
         }
     });
 }
-exports.getProduct = getProduct;
-function addProduct(req, res) {
+exports.getPaymentMethod = getPaymentMethod;
+function addPaymentMethod(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        const { name_product, price_product } = req.body;
+        const { name } = req.body;
         try {
-            const product = yield products_model_1.default.create({
-                name_product: name_product,
-                price_product: price_product,
+            const product = yield paymentMethods_model_1.default.create({
+                name: name,
             });
             res.status(200).json("Added correctly");
         }
@@ -58,18 +57,17 @@ function addProduct(req, res) {
         }
     });
 }
-exports.addProduct = addProduct;
-function editProduct(req, res) {
+exports.addPaymentMethod = addPaymentMethod;
+function editPaymentMethod(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const { id } = req.params;
-        const { name_product, price_product } = req.body;
+        const { name } = req.body;
         try {
-            const product = yield products_model_1.default.update({
-                name_product: name_product,
-                price_product: price_product,
+            const product = yield paymentMethods_model_1.default.update({
+                name: name,
             }, {
                 where: {
-                    id_product: id,
+                    id_payment_method: id,
                 },
             });
             res.status(200).json("Edited correctly");
@@ -79,14 +77,14 @@ function editProduct(req, res) {
         }
     });
 }
-exports.editProduct = editProduct;
-function deleteProduct(req, res) {
+exports.editPaymentMethod = editPaymentMethod;
+function deletePaymentMethod(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const { id } = req.params;
         try {
-            const product = yield products_model_1.default.destroy({
+            const product = yield paymentMethods_model_1.default.destroy({
                 where: {
-                    id_product: id,
+                    id_payment_method: id,
                 },
             });
             res.status(200).json("Deleted correctly");
@@ -96,5 +94,5 @@ function deleteProduct(req, res) {
         }
     });
 }
-exports.deleteProduct = deleteProduct;
-//# sourceMappingURL=products.controller.js.map
+exports.deletePaymentMethod = deletePaymentMethod;
+//# sourceMappingURL=paymentMethods.controller.js.map

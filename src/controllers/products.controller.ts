@@ -10,6 +10,20 @@ async function getProducts(req: Request, res: Response) {
   }
 }
 
+async function getProduct(req: Request, res: Response) {
+  const { id } = req.params;
+  try {
+    const product = await ProductsDB.findOne({
+      where: {
+        id_product: id,
+      },
+    });
+    res.json(product);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 async function addProduct(req: Request, res: Response) {
   const { name_product, price_product } = req.body;
   try {
@@ -58,4 +72,4 @@ async function deleteProduct(req: Request, res: Response) {
   }
 }
 
-export { getProducts, addProduct, editProduct, deleteProduct };
+export { getProducts, getProduct, addProduct, editProduct, deleteProduct };
